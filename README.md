@@ -2,23 +2,20 @@
 
 Welcome to PocketFlow Academy! 👋 Here you'll find practical examples and tutorials to help you learn [PocketFlow](https://github.com/The-Pocket/PocketFlow).
 
-## Start Learning
-
-Begin your journey with our Hello World tutorial:
-- [Hello World](./pocketflow-hello-world) - Build your first PocketFlow app in minutes!
-
-More tutorials coming soon! Stay tuned 🚀
-
 ## Examples
 
-### Getting Started
-- [`pocketflow-hello-world`](./pocketflow-hello-world) - Your first PocketFlow app! A simple example showing basic setup and usage
+### Core Concepts
+#### Node
+- [`pocketflow-node`](./pocketflow-node) - Learn Node concepts through a practical example demonstrating prep->exec->post lifecycle, error handling, and retries
 
-### Basic Concepts
-- [`pocketflow-text-converter`](./pocketflow-text-converter) - A simple text converter demonstrating Flow concepts like action-based transitions and branching
+#### Flow
+- [`pocketflow-flow`](./pocketflow-flow) - Learn Flow concepts through a practical example demonstrating action-based transitions and branching
 
-### LLM Applications
-- [`pocketflow-summarize`](./pocketflow-summarize) - Text summarization with error handling and retries. Learn about Node architecture, error handling, and shared store
+#### Communication
+- [`pocketflow-communication`](./pocketflow-communication) - A word counter app showcasing the Shared Store pattern for communication between nodes
+
+### Projects
+- [`pocketflow-hello-world`](./pocketflow-hello-world) - Build your first complete PocketFlow project with step-by-step guidance
 
 ## What This Example Demonstrates
 
