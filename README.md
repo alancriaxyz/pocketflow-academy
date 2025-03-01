@@ -14,6 +14,9 @@ More tutorials coming soon! Stay tuned 🚀
 ### Getting Started
 - [`pocketflow-hello-world`](./pocketflow-hello-world) - Your first PocketFlow app! A simple example showing basic setup and usage
 
+### Basic Concepts
+- [`pocketflow-text-converter`](./pocketflow-text-converter) - A simple text converter demonstrating Flow concepts like action-based transitions and branching
+
 ### LLM Applications
 - [`pocketflow-summarize`](./pocketflow-summarize) - Text summarization with error handling and retries. Learn about Node architecture, error handling, and shared store
 
