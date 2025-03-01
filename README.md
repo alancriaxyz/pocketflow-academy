@@ -14,12 +14,17 @@ More tutorials coming soon! Stay tuned 🚀
 ### Getting Started
 - [`pocketflow-hello-world`](./pocketflow-hello-world) - Your first PocketFlow app! A simple example showing basic setup and usage
 
+### LLM Applications
+- [`pocketflow-summarize`](./pocketflow-summarize) - Text summarization with error handling and retries. Learn about Node architecture, error handling, and shared store
+
 ## What This Example Demonstrates
 
 - Basic PocketFlow setup in a Python project
 - Standard project structure
 - Testing setup
 - Best practices for Python development with PocketFlow
+- Error handling and retry mechanisms
+- Working with LLMs in PocketFlow
 
 ## Additional Resources
 
