@@ -1,16 +1,8 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 from flow import create_vision_flow
 
 def main():
-    # Load environment variables
-    load_dotenv()
-    
-    # Check if OpenAI API key is set
-    if not os.getenv("OPENAI_API_KEY"):
-        raise ValueError("Please set OPENAI_API_KEY environment variable")
-    
     # Create flow
     flow = create_vision_flow()
     

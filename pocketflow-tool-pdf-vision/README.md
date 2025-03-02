@@ -16,10 +16,9 @@ A PocketFlow example project demonstrating PDF processing with OpenAI's Vision A
    ```bash
    pip install -r requirements.txt
    ```
-3. Set up environment variables:
+3. Set your OpenAI API key as an environment variable:
    ```bash
-   # Create .env file
-   echo "OPENAI_API_KEY=your_api_key_here" > .env
+   export OPENAI_API_KEY=your_api_key_here
    ```
 
 ## Usage
