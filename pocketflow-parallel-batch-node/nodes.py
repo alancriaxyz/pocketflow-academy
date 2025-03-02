@@ -1,9 +1,9 @@
 """AsyncParallelBatchNode implementation for article summarization."""
 
-from pocketflow import AsyncParallelBatchNode, Node
+from pocketflow import AsyncParallelBatchNode, AsyncNode
 from utils import call_llm_async, load_articles, save_summaries
 
-class LoadArticles(Node):
+class LoadArticles(AsyncNode):
     """Node that loads articles to process."""
     
     async def prep_async(self, shared):
@@ -12,10 +12,14 @@ class LoadArticles(Node):
         articles = await load_articles()
         return articles
     
+    async def exec_async(self, articles):
+        """No processing needed."""
+        return articles
+    
     async def post_async(self, shared, prep_res, exec_res):
         """Store articles in shared store."""
-        shared["articles"] = prep_res
-        print(f"Found {len(prep_res)} articles to process")
+        shared["articles"] = exec_res
+        print(f"Found {len(exec_res)} articles to process")
         return "process"
 
 class ParallelSummarizer(AsyncParallelBatchNode):
