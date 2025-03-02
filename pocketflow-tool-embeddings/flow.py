@@ -4,7 +4,8 @@ from nodes import (
     GetEmbeddingNode,
     CreateSearchIndexNode,
     SearchSimilarNode,
-    BatchEmbeddingNode
+    BatchEmbeddingNode,
+    EmbeddingNode
 )
 
 def create_single_embedding_flow():
@@ -45,4 +46,12 @@ def create_batch_embedding_flow():
     batch_embed = BatchEmbeddingNode()
     
     # Create and return flow
-    return Flow(start=batch_embed) 
+    return Flow(start=batch_embed)
+
+def create_embedding_flow():
+    """Create a flow for text embedding"""
+    # Create embedding node
+    embedding = EmbeddingNode()
+    
+    # Create and return flow
+    return Flow(start=embedding) 

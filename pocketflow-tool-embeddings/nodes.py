@@ -28,13 +28,15 @@ class TextPreprocessNode(Node):
         shared["preprocessed_text"] = exec_res
         return "default"
 
-class GetEmbeddingNode(Node):
+class EmbeddingNode(Node):
     """Node for getting embeddings from OpenAI API"""
     
     def prep(self, shared):
-        return shared["preprocessed_text"]
+        # Get text from shared store
+        return shared.get("text", "")
         
     def exec(self, text):
+        # Get embedding using OpenAI API
         response = client.embeddings.create(
             model="text-embedding-ada-002",
             input=text
@@ -42,6 +44,7 @@ class GetEmbeddingNode(Node):
         return response.data[0].embedding
         
     def post(self, shared, prep_res, exec_res):
+        # Store embedding in shared store
         shared["embedding"] = exec_res
         return "default"
 
