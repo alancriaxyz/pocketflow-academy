@@ -40,4 +40,5 @@ class ParallelSummarizer(AsyncParallelBatchNode):
             print(f"{i}. {summary}")
         
         save_summaries(summaries)
-        print("\nFinal report saved to: summaries.txt") 
+        print("\nFinal report saved to: summaries.txt")
+        return "default" 
