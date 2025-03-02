@@ -17,7 +17,7 @@ def extract_text_from_image(image: Image.Image, prompt: str = None) -> str:
     
     # Default prompt for general OCR
     if prompt is None:
-        prompt = "Please extract all text from this image, maintaining the original formatting as much as possible."
+        prompt = "Please extract all text from this image."
     
     # Call Vision API
     response = client.chat.completions.create(
@@ -26,15 +26,9 @@ def extract_text_from_image(image: Image.Image, prompt: str = None) -> str:
             "role": "user",
             "content": [
                 {"type": "text", "text": prompt},
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": f"data:image/png;base64,{img_base64}"
-                    }
-                }
+                {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{img_base64}"}}
             ]
-        }],
-        max_tokens=1000
+        }]
     )
     
     return response.choices[0].message.content
