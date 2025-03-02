@@ -8,6 +8,7 @@ A PocketFlow example project demonstrating PDF processing with OpenAI's Vision A
 - Extract text from scanned documents using GPT-4 Vision API
 - Support for custom extraction prompts
 - Maintain page order and formatting in extracted text
+- Batch processing of multiple PDFs from a directory
 
 ## Installation
 
@@ -23,24 +24,26 @@ A PocketFlow example project demonstrating PDF processing with OpenAI's Vision A
 
 ## Usage
 
-1. Place your PDF file in the project directory (e.g., `example.pdf`)
+1. Place your PDF files in the `pdfs` directory
 2. Run the example:
    ```bash
    python main.py
    ```
+   The script will process all PDF files in the `pdfs` directory and output the extracted text for each one.
 
 ## Project Structure
 
 ```
 pocketflow-tool-pdf-vision/
+├── pdfs/           # Directory for PDF files to process
 ├── tools/
-│   ├── pdf.py         # PDF to image conversion
-│   └── vision.py      # Vision API integration
+│   ├── pdf.py     # PDF to image conversion
+│   └── vision.py  # Vision API integration
 ├── utils/
-│   └── call_llm.py    # OpenAI client config
-├── nodes.py           # PocketFlow nodes
-├── flow.py            # Flow configuration
-└── main.py           # Example usage
+│   └── call_llm.py # OpenAI client config
+├── nodes.py       # PocketFlow nodes
+├── flow.py        # Flow configuration
+└── main.py        # Example usage
 ```
 
 ## Flow Description
