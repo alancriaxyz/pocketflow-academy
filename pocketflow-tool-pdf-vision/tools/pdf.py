@@ -50,9 +50,3 @@ def image_to_base64(image: Image.Image) -> str:
     buffer = io.BytesIO()
     image.save(buffer, format="PNG")
     return base64.b64encode(buffer.getvalue()).decode('utf-8')
-
-if __name__ == "__main__":
-    # Test PDF processing
-    test_pdf = "example.pdf"
-    images = pdf_to_images(test_pdf)
-    print(f"Converted {len(images)} pages to images")

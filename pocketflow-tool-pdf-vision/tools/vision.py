@@ -21,7 +21,7 @@ def extract_text_from_image(image: Image.Image, prompt: str = None) -> str:
     
     # Call Vision API
     response = client.chat.completions.create(
-        model="gpt-4-vision-preview",
+        model="gpt-4-vision-preview-1106",
         messages=[{
             "role": "user",
             "content": [
