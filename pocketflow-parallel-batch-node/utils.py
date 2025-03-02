@@ -32,7 +32,7 @@ async def load_articles():
     ]
     
     # Create data directory if it doesn't exist
-    data_dir = "pocketflow-parallel-batch-node/data"
+    data_dir = "data"
     os.makedirs(data_dir, exist_ok=True)
     
     # Save mock articles to files
@@ -45,7 +45,7 @@ async def load_articles():
 def save_summaries(summaries):
     """Save summaries to output file."""
     # Create data directory if it doesn't exist
-    data_dir = "pocketflow-parallel-batch-node/data"
+    data_dir = "data"
     os.makedirs(data_dir, exist_ok=True)
     
     with open(os.path.join(data_dir, "summaries.txt"), "w") as f:
