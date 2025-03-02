@@ -20,8 +20,16 @@ Welcome to PocketFlow Academy! 👋 Here you'll find practical examples and tuto
 #### BatchFlow
 - [`pocketflow-batch-flow`](./pocketflow-batch-flow) - Learn BatchFlow through an image processor that applies multiple filters to multiple images
 
+### Advanced
 #### Nested BatchFlow
 - [`pocketflow-nested-batch`](./pocketflow-nested-batch) - Learn Nested BatchFlow through a school grades calculator that processes multiple classes with multiple students
+
+#### AsyncNode
+- [`pocketflow-async-basic`](./pocketflow-async-basic) - A simple recipe finder that demonstrates asynchronous operations. The example shows how to:
+  - Handle user input without blocking
+  - Make async API calls
+  - Process results with async LLM calls
+  - Chain async operations in a flow
 
 ### Projects
 - [`pocketflow-hello-world`](./pocketflow-hello-world) - Build your first complete PocketFlow project with step-by-step guidance
