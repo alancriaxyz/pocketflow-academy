@@ -31,7 +31,14 @@ Welcome to PocketFlow Academy! 👋 Here you'll find practical examples and tuto
   - Process results with async LLM calls
   - Chain async operations in a flow
 
-### Projects
+#### Parallel Processing
+- [`pocketflow-parallel-batch-node`](./pocketflow-parallel-batch-node) - Learn how to process multiple items concurrently using ParallelBatchNode
+- [`pocketflow-parallel-batch-flow`](./pocketflow-parallel-batch-flow) - Advanced example of parallel processing with multiple flows running concurrently
+
+### Tools and Utilities
+- [`pocketflow-tool-embeddings`](./pocketflow-tool-embeddings) - Example of how to integrate and use OpenAI embeddings with proper environment configuration and code organization
+
+### Getting Started
 - [`pocketflow-hello-world`](./pocketflow-hello-world) - Build your first complete PocketFlow project with step-by-step guidance
 
 ## What This Example Demonstrates
@@ -42,6 +49,8 @@ Welcome to PocketFlow Academy! 👋 Here you'll find practical examples and tuto
 - Best practices for Python development with PocketFlow
 - Error handling and retry mechanisms
 - Working with LLMs in PocketFlow
+- Environment configuration and security best practices
+- Parallel processing and performance optimization
 
 ## Additional Resources
 
