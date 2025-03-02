@@ -1,7 +1,25 @@
+"""AsyncNode implementations for image processing."""
+
 import os
 import asyncio
 from PIL import Image, ImageFilter
 import numpy as np
+from pocketflow import AsyncNode
+
+class NoOp(AsyncNode):
+    """Node that does nothing, used as a terminal node."""
+    
+    async def prep_async(self, shared):
+        """No preparation needed."""
+        return None
+    
+    async def exec_async(self, prep_res):
+        """No execution needed."""
+        return None
+    
+    async def post_async(self, shared, prep_res, exec_res):
+        """No post-processing needed."""
+        return None
 
 class LoadImage(AsyncNode):
     """Node that loads an image from file."""

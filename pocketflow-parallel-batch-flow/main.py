@@ -1,5 +1,3 @@
-"""Entry point for parallel image processing example."""
-
 import os
 import asyncio
 import numpy as np
@@ -40,6 +38,7 @@ async def main():
     
     # Create and run flow
     flow = create_flow()
+    
     await flow.run_async(shared)
     
     print("\nProcessing complete! Check the output/ directory for results.")
