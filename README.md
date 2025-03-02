@@ -20,6 +20,9 @@ Welcome to PocketFlow Academy! 👋 Here you'll find practical examples and tuto
 #### BatchFlow
 - [`pocketflow-batch-flow`](./pocketflow-batch-flow) - Learn BatchFlow through an image processor that applies multiple filters to multiple images
 
+#### Nested BatchFlow
+- [`pocketflow-nested-batch`](./pocketflow-nested-batch) - Learn Nested BatchFlow through a school grades calculator that processes multiple classes with multiple students
+
 ### Projects
 - [`pocketflow-hello-world`](./pocketflow-hello-world) - Build your first complete PocketFlow project with step-by-step guidance
 
