@@ -1,23 +1,27 @@
-from utils import (
-    get_embedding,
-    get_embeddings_batch,
-    create_index,
-    search_similar,
-    calculate_similarity,
-    preprocess_text
+from flow import (
+    create_single_embedding_flow,
+    create_search_flow,
+    create_batch_embedding_flow
 )
 
-def demonstrate_basic_embedding():
-    """Demonstrate basic embedding generation"""
-    print("\n1. Basic Embedding Generation")
+def demonstrate_single_embedding():
+    """Demonstrate single text embedding"""
+    print("\n1. Single Text Embedding")
     print("-" * 50)
     
-    text = "The quick brown fox jumps over the lazy dog"
-    embedding = get_embedding(preprocess_text(text))
+    # Create flow
+    flow = create_single_embedding_flow()
     
-    print(f"Text: {text}")
-    print(f"Embedding dimension: {len(embedding)}")
-    print(f"First 5 values: {embedding[:5]}")
+    # Prepare shared data
+    shared = {"text": "The quick brown fox jumps over the lazy dog"}
+    print(f"Input text: {shared['text']}")
+    
+    # Run flow
+    flow.run(shared)
+    
+    # Show results
+    print(f"Embedding dimension: {len(shared['embedding'])}")
+    print(f"First 5 values: {shared['embedding'][:5]}")
 
 def demonstrate_semantic_search():
     """Demonstrate semantic search with embeddings"""
@@ -33,74 +37,72 @@ def demonstrate_semantic_search():
         "The cat plays with a ball of yarn",
         "Dogs bark at passing cars on the street",
     ]
+    print("Documents to index:")
+    for i, doc in enumerate(documents, 1):
+        print(f"{i}. {doc}")
     
-    # Get embeddings for all documents
-    print("Getting embeddings for documents...")
-    embeddings = get_embeddings_batch([preprocess_text(doc) for doc in documents])
+    # Create flow and nodes
+    flow, preprocess, get_embedding, search = create_search_flow()
     
-    # Create search index
-    print("Creating search index...")
-    index = create_index(embeddings)
+    # Index documents
+    shared = {"texts": documents}
+    flow.run(shared)
     
-    # Search query
+    # Prepare for search
     query = "pets playing with toys"
     print(f"\nSearching for: '{query}'")
     
-    # Get query embedding and search
-    query_embedding = get_embedding(preprocess_text(query))
-    distances, indices = search_similar(index, query_embedding, k=2)
+    # Get query embedding
+    shared["text"] = query
+    preprocess.run(shared)
+    get_embedding.run(shared)
+    shared["query_embedding"] = shared["embedding"]
+    shared["top_k"] = 2
     
+    # Search
+    search.run(shared)
+    
+    # Show results
     print("\nMost similar documents:")
-    for i, (dist, idx) in enumerate(zip(distances, indices), 1):
+    for i, (dist, idx) in enumerate(zip(
+        shared["search_results"]["distances"],
+        shared["search_results"]["indices"]
+    ), 1):
         print(f"{i}. '{documents[idx]}' (distance: {dist:.3f})")
-
-def demonstrate_document_similarity():
-    """Demonstrate document similarity comparison"""
-    print("\n3. Document Similarity")
-    print("-" * 50)
-    
-    # Sample texts to compare
-    text1 = "The weather is sunny and warm today"
-    text2 = "It's a beautiful sunny day with clear skies"
-    text3 = "The stock market showed significant gains"
-    
-    # Get embeddings
-    embedding1 = get_embedding(preprocess_text(text1))
-    embedding2 = get_embedding(preprocess_text(text2))
-    embedding3 = get_embedding(preprocess_text(text3))
-    
-    # Calculate similarities
-    sim1_2 = calculate_similarity(embedding1, embedding2)
-    sim1_3 = calculate_similarity(embedding1, embedding3)
-    
-    print(f"Text 1: '{text1}'")
-    print(f"Text 2: '{text2}'")
-    print(f"Text 3: '{text3}'")
-    print(f"\nSimilarity between Text 1 and 2: {sim1_2:.3f}")
-    print(f"Similarity between Text 1 and 3: {sim1_3:.3f}")
 
 def demonstrate_batch_processing():
     """Demonstrate batch processing of texts"""
-    print("\n4. Batch Processing")
+    print("\n3. Batch Processing")
     print("-" * 50)
     
-    # Generate a larger set of texts
+    # Create flow
+    flow = create_batch_embedding_flow()
+    
+    # Generate sample texts
     texts = [f"Sample text number {i}" for i in range(1, 11)]
     
-    print(f"Processing {len(texts)} texts in batch...")
-    embeddings = get_embeddings_batch(texts, batch_size=5)
+    # Prepare shared data
+    shared = {
+        "texts": texts,
+        "batch_size": 5
+    }
     
-    print(f"Successfully generated {len(embeddings)} embeddings")
-    print(f"Each embedding has dimension: {len(embeddings[0])}")
+    print(f"Processing {len(texts)} texts in batches of {shared['batch_size']}...")
+    
+    # Run flow
+    flow.run(shared)
+    
+    # Show results
+    print(f"Successfully generated {len(shared['embeddings'])} embeddings")
+    print(f"Each embedding has dimension: {len(shared['embeddings'][0])}")
 
 def main():
-    print("Embeddings Tool Example")
+    print("Embeddings Tool Example with PocketFlow")
     print("=" * 50)
     
     # Run demonstrations
-    demonstrate_basic_embedding()
+    demonstrate_single_embedding()
     demonstrate_semantic_search()
-    demonstrate_document_similarity()
     demonstrate_batch_processing()
 
 if __name__ == "__main__":
