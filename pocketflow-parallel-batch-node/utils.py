@@ -1,3 +1,6 @@
+"""Utility functions for parallel processing."""
+
+import os
 import asyncio
 import aiohttp
 from openai import AsyncOpenAI
@@ -28,15 +31,23 @@ async def load_articles():
         "Article 3: Latest developments in robotics..."
     ]
     
+    # Create data directory if it doesn't exist
+    data_dir = "pocketflow-parallel-batch-node/data"
+    os.makedirs(data_dir, exist_ok=True)
+    
     # Save mock articles to files
     for i, content in enumerate(articles, 1):
-        with open(f"pocketflow-parallel-batch-node/data/article{i}.txt", "w") as f:
+        with open(os.path.join(data_dir, f"article{i}.txt"), "w") as f:
             f.write(content)
     
     return articles
 
 def save_summaries(summaries):
     """Save summaries to output file."""
-    with open("pocketflow-parallel-batch-node/data/summaries.txt", "w") as f:
+    # Create data directory if it doesn't exist
+    data_dir = "pocketflow-parallel-batch-node/data"
+    os.makedirs(data_dir, exist_ok=True)
+    
+    with open(os.path.join(data_dir, "summaries.txt"), "w") as f:
         for i, summary in enumerate(summaries, 1):
             f.write(f"{i}. {summary}\n") 
