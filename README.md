@@ -14,8 +14,11 @@ Welcome to PocketFlow Academy! 👋 Here you'll find practical examples and tuto
 #### Communication
 - [`pocketflow-communication`](./pocketflow-communication) - A word counter app showcasing the Shared Store pattern for communication between nodes
 
-#### Batch Node
-- [`pocketflow-batch-node`](./pocketflow-batch-node) - Learn Batch Node through a CSV processor that handles large files in chunks
+#### BatchNode
+- [`pocketflow-batch-node`](./pocketflow-batch-node) - Learn BatchNode through a CSV processor that handles large files in chunks
+
+#### BatchFlow
+- [`pocketflow-batch-flow`](./pocketflow-batch-flow) - Learn BatchFlow through an image processor that applies multiple filters to multiple images
 
 ### Projects
 - [`pocketflow-hello-world`](./pocketflow-hello-world) - Build your first complete PocketFlow project with step-by-step guidance
