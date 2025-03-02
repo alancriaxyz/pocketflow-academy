@@ -1,7 +1,10 @@
+import os
 from openai import OpenAI
 
+# No need for dotenv if using system environment variables
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 def call_llm(prompt):    
-    client = OpenAI(api_key="YOUR_API_KEY_HERE")
     r = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role": "user", "content": prompt}]
@@ -10,4 +13,4 @@ def call_llm(prompt):
     
 if __name__ == "__main__":
     prompt = "What is the meaning of life?"
-    print(call_llm(prompt))
+    print(call_llm(prompt)) 
