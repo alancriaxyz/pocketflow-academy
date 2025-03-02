@@ -6,53 +6,24 @@ import numpy as np
 from PIL import Image
 from flow import create_flow
 
-def create_sample_images():
-    """Create sample images if they don't exist."""
-    # Create images directory if needed
-    os.makedirs("images", exist_ok=True)
+def get_image_paths():
+    """Get paths of existing images in the images directory."""
+    images_dir = "images"
+    if not os.path.exists(images_dir):
+        raise ValueError(f"Directory '{images_dir}' not found!")
     
-    # Sample image paths
-    image_paths = [
-        "images/cat.jpg",
-        "images/dog.jpg",
-        "images/bird.jpg"
-    ]
+    # List all jpg files in the images directory
+    image_paths = []
+    for filename in os.listdir(images_dir):
+        if filename.lower().endswith(('.jpg', '.jpeg', '.png')):
+            image_paths.append(os.path.join(images_dir, filename))
     
-    # Only create if they don't exist
-    if all(os.path.exists(p) for p in image_paths):
-        return image_paths
+    if not image_paths:
+        raise ValueError(f"No images found in '{images_dir}' directory!")
     
-    print("\nCreating sample images...")
-    
-    # Image size
-    size = (300, 200)
-    
-    # Create gradient image
-    gradient = np.linspace(0, 255, size[0], dtype=np.uint8)
-    gradient = np.tile(gradient, (size[1], 1))
-    gradient_img = Image.fromarray(gradient)
-    gradient_img.save(image_paths[0])
-    print(f"Created: {image_paths[0]}")
-    
-    # Create checkerboard image
-    checkerboard = np.zeros(size, dtype=np.uint8)
-    checkerboard[::2, ::2] = 255
-    checkerboard[1::2, 1::2] = 255
-    checkerboard_img = Image.fromarray(checkerboard)
-    checkerboard_img.save(image_paths[1])
-    print(f"Created: {image_paths[1]}")
-    
-    # Create circles image
-    circles = np.zeros(size, dtype=np.uint8)
-    center_x, center_y = size[0] // 2, size[1] // 2
-    for r in range(0, min(size) // 2, 20):
-        for x in range(size[0]):
-            for y in range(size[1]):
-                if abs((x - center_x)**2 + (y - center_y)**2 - r**2) < 100:
-                    circles[y, x] = 255
-    circles_img = Image.fromarray(circles)
-    circles_img.save(image_paths[2])
-    print(f"Created: {image_paths[2]}")
+    print(f"\nFound {len(image_paths)} images:")
+    for path in image_paths:
+        print(f"- {path}")
     
     return image_paths
 
@@ -61,8 +32,8 @@ async def main():
     print("\nParallel Image Processor")
     print("-" * 30)
     
-    # Create sample images
-    image_paths = create_sample_images()
+    # Get existing image paths
+    image_paths = get_image_paths()
     
     # Create shared store with image paths
     shared = {"images": image_paths}

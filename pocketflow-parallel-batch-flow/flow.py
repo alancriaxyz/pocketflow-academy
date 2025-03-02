@@ -1,5 +1,3 @@
-"""Flow definitions for parallel image processing."""
-
 from pocketflow import AsyncFlow, AsyncParallelBatchFlow, NoOp
 from nodes import LoadImage, ApplyFilter, SaveImage
 

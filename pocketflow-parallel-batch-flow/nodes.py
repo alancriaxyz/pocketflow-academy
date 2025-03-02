@@ -1,5 +1,3 @@
-"""AsyncNode implementations for image processing."""
-
 import os
 import asyncio
 from PIL import Image, ImageFilter
